@@ -1,5 +1,5 @@
 // IMPORTAÇÃO DE UM MÓDULO (OU DEPENDÊNCIA) EXTERNO
-const { select, input } = require("@inquirer/prompts");
+const { select, input, checkbox } = require("@inquirer/prompts");
 
 let meta = {
     value: "Beber 3L de água todos os dias",
@@ -19,6 +19,27 @@ const cadastrarMeta = async () => {
     metas.push({ 
         value: meta, 
         checked: false 
+    })
+}
+
+const listarMetas = async () => {
+    const respostas = await checkbox({
+        message: "Use as setas para mover-se entre as metas, a tecla Space para marcar ou desmarcar, e a tecla Enter para finalizar essa etapa",
+        // SPREAD OPERATOR: USADO PARA COPIAR TODOS OS DADOS DE UMA DADA VARIÁVEL EM OUTRA PARA MINUPULAÇÃO
+        choices: [...metas]
+    })
+
+    if(respostas.length == 0) {
+        console.log("Nehuma meta selecionada!")
+        return
+    }
+
+    respostas.forEach((resposta) => {
+        const meta = metas.find((m) => {
+            return m.value == resposta
+        })
+
+        meta.checked = true
     })
 }
 
@@ -43,15 +64,15 @@ const start = async () => {
             ],
         })
 
-        switch(start){
-        case 'cadastrar':
+        switch(opcao){
+        case "cadastrar":
             await cadastrarMeta()
             console.log(metas)
             break;
         case "listar":
-            console.log("Vamos listar")
+            await listarMetas()
             break;
-        case 'sair':
+        case "sair":
             return
         }
     }
