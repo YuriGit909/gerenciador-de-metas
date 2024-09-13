@@ -25,8 +25,12 @@ const cadastrarMeta = async () => {
 const listarMetas = async () => {
     const respostas = await checkbox({
         message: "Use as setas para mover-se entre as metas, a tecla Space para marcar ou desmarcar, e a tecla Enter para finalizar essa etapa",
-        // SPREAD OPERATOR: USADO PARA COPIAR TODOS OS DADOS DE UMA DADA VARIÁVEL EM OUTRA PARA MINUPULAÇÃO
-        choices: [...metas]
+        choices: [...metas], // SPREAD OPERATOR: USADO PARA COPIAR TODOS OS DADOS DE UMA DADA VARIÁVEL EM OUTRA PARA MINUPULAÇÃO
+        instructions: false,
+    })
+
+    metas.forEach((m) => {
+        m.checked = false
     })
 
     if(respostas.length == 0) {
@@ -96,6 +100,7 @@ const start = async () => {
             await metasRealizadas()
             break;
         case "sair":
+            console.log("Até a próxima!")
             return
         }
     }
