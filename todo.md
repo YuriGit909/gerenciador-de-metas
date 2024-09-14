@@ -1,9 +1,9 @@
 # Itens a serem feitos
 
-- Criar metas
-- Listar metas
-    - Metas realizadas
-    - Metas abertas
-- Marcar/Desmrcar metas realizadas
-- Remover metas
-- Sistema de mensagens
+- [x] Criar metas
+- [x] Listar metas
+    - [x] Metas realizadas
+    - [x] Metas abertas
+- [x] Marcar/Desmrcar metas realizadas
+- [x] Remover metas
+- [x] Sistema de mensagens
